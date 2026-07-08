@@ -39,7 +39,7 @@ export const actualizarAlbum=async(req:Request, res:Response)=>{
         });
 
         if(!existeAlbum){
-           return res.status(404).json("No existe album para actualizar");
+           return res.status(404).json({mensaje: "No existe album para actualizar"});
         }
 
         const albumActualizado= await prisma.album.update({
