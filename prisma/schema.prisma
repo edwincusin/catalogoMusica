@@ -5,9 +5,26 @@
 
 generator client {
   provider = "prisma-client"
-  output   = "../generated/prisma"
+  output   = "../src/generated/prisma"
 }
 
 datasource db {
   provider = "postgresql"
+}
+
+model Album {
+  id        Int       @id @default(autoincrement())
+  titulo    String
+  artista   String
+  anio      Int
+  canciones Cancion[] // Un álbum tiene muchas canciones
+}
+
+model Cancion {
+  id       Int    @id @default(autoincrement())
+  titulo   String
+  duracion Int // Duración en segundos (ej. 240)
+  albumId  Int // Clave foránea obligatoria
+  // Establecemos la relación y definimos el borrado en cascada (onDelete: Cascade)
+  album Album @relation(fields: [albumId], references: [id],onDelete: Cascade)
 }
