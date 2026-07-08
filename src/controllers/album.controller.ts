@@ -15,3 +15,13 @@ export const crearAlbum=async(req:Request, res:Response)=>{
     }
 }
 
+//FUNCION PARA OBTNER TODOS LOS ALBUMES
+export const obtenerAlbumes=async(req:Request, res:Response)=>{
+    try {
+        const albumes= await prisma.album.findMany();
+        res.status(200).json(albumes);
+
+    } catch (error) {
+        res.status(500).json({error: "Error al recuperar album "+error})
+    }
+}
