@@ -1,6 +1,6 @@
 import type { Request, Response } from "express";
 import prisma from "../database/prisma.js";
-import PrismaC
+
 
 
 //FUNCION PARA CREAR ALBUM
@@ -67,7 +67,7 @@ export const eliminarAlbum=async(req:Request, res:Response)=>{
         });
 
         if(!existeAlbum){
-           return res.status(404).json({mensaje: "No existe album para eliminar"});
+            return res.status(404).json({mensaje: "No existe album para eliminar"});
         }
 
         await prisma.album.delete({
