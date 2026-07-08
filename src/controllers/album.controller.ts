@@ -50,6 +50,33 @@ export const actualizarAlbum=async(req:Request, res:Response)=>{
         res.status(200).json(albumActualizado);
 
     } catch (error) {
-        res.status(500).json({error: "Error al recuperar album "+error})
+        res.status(500).json({error: "Error al actualizar album "+error})
+    }
+}
+
+
+
+
+//FUNCION ELIMINAR UN ALBUN POR ID
+export const eliminarAlbum=async(req:Request, res:Response)=>{
+    try {
+        const {id}=req.params;
+
+        const existeAlbum= await prisma.album.findUnique({
+            where:{id:Number(id)}
+        });
+
+        if(!existeAlbum){
+           return res.status(404).json({mensaje: "No existe album para eliminar"});
+        }
+
+        await prisma.album.delete({
+            where:{id:Number(id)}
+        })
+
+        res.status(200).json({mensaje: "Album eliminado en cascada"});
+
+    } catch (error) {
+        res.status(500).json({error: "Error al eliminar album "+error})
     }
 }
