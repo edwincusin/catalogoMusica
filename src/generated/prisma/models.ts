@@ -10,4 +10,5 @@
  */
 export type * from './models/Album.js'
 export type * from './models/Cancion.js'
+export type * from './models/Genero.js'
 export type * from './commonInputTypes.js'

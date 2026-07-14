@@ -18,6 +18,11 @@ model Album {
   artista   String
   anio      Int
   canciones Cancion[] // Un álbum tiene muchas canciones
+
+  generoId Int
+  
+  genero Genero @relation(fields: [generoId], references: [id], onDelete: Cascade)
+
 }
 
 model Cancion {
@@ -27,4 +32,10 @@ model Cancion {
   albumId  Int // Clave foránea obligatoria
   // Establecemos la relación y definimos el borrado en cascada (onDelete: Cascade)
   album Album @relation(fields: [albumId], references: [id],onDelete: Cascade)
+}
+
+model Genero {
+  id        Int       @id @default(autoincrement())
+  nombre    String
+  albumes Album[]
 }

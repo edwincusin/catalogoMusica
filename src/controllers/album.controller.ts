@@ -6,9 +6,9 @@ import prisma from "../database/prisma.js";
 //FUNCION PARA CREAR ALBUM
 export const crearAlbum=async(req:Request, res:Response)=>{
     try {
-        const {titulo, artista, anio}=req.body;
+        const {titulo, artista, anio, generoId}=req.body;
         const albumCreado= await prisma.album.create({
-            data:{titulo,artista,anio}
+            data:{titulo,artista,anio, generoId:Number(generoId)}
         });
         res.status(201).json(albumCreado);
     } catch (error) {
@@ -26,6 +26,23 @@ export const obtenerAlbumes=async(req:Request, res:Response)=>{
         res.status(500).json({error: "Error al recuperar album "+error})
     }
 }
+
+
+//FUNCION PARA OBTNER POR ID
+export const obtenerAlbumPorID=async(req:Request, res:Response)=>{
+    try {
+        const {id}=req.params
+        const album= await prisma.album.findUnique({
+            where:{id:Number(id)}
+        });
+        
+        res.status(200).json(album);
+
+    } catch (error) {
+        res.status(500).json({error: "Error al recuperar album "+error})
+    }
+}
+
 
 
 //FUNCION MODIFICAR UN ALBUN POR ID

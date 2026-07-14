@@ -385,7 +385,8 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 
 export const ModelName = {
   Album: 'Album',
-  Cancion: 'Cancion'
+  Cancion: 'Cancion',
+  Genero: 'Genero'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -401,7 +402,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "album" | "cancion"
+    modelProps: "album" | "cancion" | "genero"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -553,6 +554,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Genero: {
+      payload: Prisma.$GeneroPayload<ExtArgs>
+      fields: Prisma.GeneroFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.GeneroFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GeneroPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.GeneroFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GeneroPayload>
+        }
+        findFirst: {
+          args: Prisma.GeneroFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GeneroPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.GeneroFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GeneroPayload>
+        }
+        findMany: {
+          args: Prisma.GeneroFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GeneroPayload>[]
+        }
+        create: {
+          args: Prisma.GeneroCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GeneroPayload>
+        }
+        createMany: {
+          args: Prisma.GeneroCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.GeneroCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GeneroPayload>[]
+        }
+        delete: {
+          args: Prisma.GeneroDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GeneroPayload>
+        }
+        update: {
+          args: Prisma.GeneroUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GeneroPayload>
+        }
+        deleteMany: {
+          args: Prisma.GeneroDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.GeneroUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.GeneroUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GeneroPayload>[]
+        }
+        upsert: {
+          args: Prisma.GeneroUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GeneroPayload>
+        }
+        aggregate: {
+          args: Prisma.GeneroAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateGenero>
+        }
+        groupBy: {
+          args: Prisma.GeneroGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.GeneroGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.GeneroCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.GeneroCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -596,7 +671,8 @@ export const AlbumScalarFieldEnum = {
   id: 'id',
   titulo: 'titulo',
   artista: 'artista',
-  anio: 'anio'
+  anio: 'anio',
+  generoId: 'generoId'
 } as const
 
 export type AlbumScalarFieldEnum = (typeof AlbumScalarFieldEnum)[keyof typeof AlbumScalarFieldEnum]
@@ -610,6 +686,14 @@ export const CancionScalarFieldEnum = {
 } as const
 
 export type CancionScalarFieldEnum = (typeof CancionScalarFieldEnum)[keyof typeof CancionScalarFieldEnum]
+
+
+export const GeneroScalarFieldEnum = {
+  id: 'id',
+  nombre: 'nombre'
+} as const
+
+export type GeneroScalarFieldEnum = (typeof GeneroScalarFieldEnum)[keyof typeof GeneroScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -787,6 +871,7 @@ export type PrismaClientOptions = ({
 export type GlobalOmitConfig = {
   album?: Prisma.AlbumOmit
   cancion?: Prisma.CancionOmit
+  genero?: Prisma.GeneroOmit
 }
 
 /* Types for Logging */

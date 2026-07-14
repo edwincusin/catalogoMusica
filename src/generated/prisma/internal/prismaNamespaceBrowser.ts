@@ -52,7 +52,8 @@ export const AnyNull = runtime.AnyNull
 
 export const ModelName = {
   Album: 'Album',
-  Cancion: 'Cancion'
+  Cancion: 'Cancion',
+  Genero: 'Genero'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -75,7 +76,8 @@ export const AlbumScalarFieldEnum = {
   id: 'id',
   titulo: 'titulo',
   artista: 'artista',
-  anio: 'anio'
+  anio: 'anio',
+  generoId: 'generoId'
 } as const
 
 export type AlbumScalarFieldEnum = (typeof AlbumScalarFieldEnum)[keyof typeof AlbumScalarFieldEnum]
@@ -89,6 +91,14 @@ export const CancionScalarFieldEnum = {
 } as const
 
 export type CancionScalarFieldEnum = (typeof CancionScalarFieldEnum)[keyof typeof CancionScalarFieldEnum]
+
+
+export const GeneroScalarFieldEnum = {
+  id: 'id',
+  nombre: 'nombre'
+} as const
+
+export type GeneroScalarFieldEnum = (typeof GeneroScalarFieldEnum)[keyof typeof GeneroScalarFieldEnum]
 
 
 export const SortOrder = {

@@ -29,11 +29,13 @@ export type AggregateAlbum = {
 export type AlbumAvgAggregateOutputType = {
   id: number | null
   anio: number | null
+  generoId: number | null
 }
 
 export type AlbumSumAggregateOutputType = {
   id: number | null
   anio: number | null
+  generoId: number | null
 }
 
 export type AlbumMinAggregateOutputType = {
@@ -41,6 +43,7 @@ export type AlbumMinAggregateOutputType = {
   titulo: string | null
   artista: string | null
   anio: number | null
+  generoId: number | null
 }
 
 export type AlbumMaxAggregateOutputType = {
@@ -48,6 +51,7 @@ export type AlbumMaxAggregateOutputType = {
   titulo: string | null
   artista: string | null
   anio: number | null
+  generoId: number | null
 }
 
 export type AlbumCountAggregateOutputType = {
@@ -55,6 +59,7 @@ export type AlbumCountAggregateOutputType = {
   titulo: number
   artista: number
   anio: number
+  generoId: number
   _all: number
 }
 
@@ -62,11 +67,13 @@ export type AlbumCountAggregateOutputType = {
 export type AlbumAvgAggregateInputType = {
   id?: true
   anio?: true
+  generoId?: true
 }
 
 export type AlbumSumAggregateInputType = {
   id?: true
   anio?: true
+  generoId?: true
 }
 
 export type AlbumMinAggregateInputType = {
@@ -74,6 +81,7 @@ export type AlbumMinAggregateInputType = {
   titulo?: true
   artista?: true
   anio?: true
+  generoId?: true
 }
 
 export type AlbumMaxAggregateInputType = {
@@ -81,6 +89,7 @@ export type AlbumMaxAggregateInputType = {
   titulo?: true
   artista?: true
   anio?: true
+  generoId?: true
 }
 
 export type AlbumCountAggregateInputType = {
@@ -88,6 +97,7 @@ export type AlbumCountAggregateInputType = {
   titulo?: true
   artista?: true
   anio?: true
+  generoId?: true
   _all?: true
 }
 
@@ -182,6 +192,7 @@ export type AlbumGroupByOutputType = {
   titulo: string
   artista: string
   anio: number
+  generoId: number
   _count: AlbumCountAggregateOutputType | null
   _avg: AlbumAvgAggregateOutputType | null
   _sum: AlbumSumAggregateOutputType | null
@@ -212,7 +223,9 @@ export type AlbumWhereInput = {
   titulo?: Prisma.StringFilter<"Album"> | string
   artista?: Prisma.StringFilter<"Album"> | string
   anio?: Prisma.IntFilter<"Album"> | number
+  generoId?: Prisma.IntFilter<"Album"> | number
   canciones?: Prisma.CancionListRelationFilter
+  genero?: Prisma.XOR<Prisma.GeneroScalarRelationFilter, Prisma.GeneroWhereInput>
 }
 
 export type AlbumOrderByWithRelationInput = {
@@ -220,7 +233,9 @@ export type AlbumOrderByWithRelationInput = {
   titulo?: Prisma.SortOrder
   artista?: Prisma.SortOrder
   anio?: Prisma.SortOrder
+  generoId?: Prisma.SortOrder
   canciones?: Prisma.CancionOrderByRelationAggregateInput
+  genero?: Prisma.GeneroOrderByWithRelationInput
 }
 
 export type AlbumWhereUniqueInput = Prisma.AtLeast<{
@@ -231,7 +246,9 @@ export type AlbumWhereUniqueInput = Prisma.AtLeast<{
   titulo?: Prisma.StringFilter<"Album"> | string
   artista?: Prisma.StringFilter<"Album"> | string
   anio?: Prisma.IntFilter<"Album"> | number
+  generoId?: Prisma.IntFilter<"Album"> | number
   canciones?: Prisma.CancionListRelationFilter
+  genero?: Prisma.XOR<Prisma.GeneroScalarRelationFilter, Prisma.GeneroWhereInput>
 }, "id">
 
 export type AlbumOrderByWithAggregationInput = {
@@ -239,6 +256,7 @@ export type AlbumOrderByWithAggregationInput = {
   titulo?: Prisma.SortOrder
   artista?: Prisma.SortOrder
   anio?: Prisma.SortOrder
+  generoId?: Prisma.SortOrder
   _count?: Prisma.AlbumCountOrderByAggregateInput
   _avg?: Prisma.AlbumAvgOrderByAggregateInput
   _max?: Prisma.AlbumMaxOrderByAggregateInput
@@ -254,6 +272,7 @@ export type AlbumScalarWhereWithAggregatesInput = {
   titulo?: Prisma.StringWithAggregatesFilter<"Album"> | string
   artista?: Prisma.StringWithAggregatesFilter<"Album"> | string
   anio?: Prisma.IntWithAggregatesFilter<"Album"> | number
+  generoId?: Prisma.IntWithAggregatesFilter<"Album"> | number
 }
 
 export type AlbumCreateInput = {
@@ -261,6 +280,7 @@ export type AlbumCreateInput = {
   artista: string
   anio: number
   canciones?: Prisma.CancionCreateNestedManyWithoutAlbumInput
+  genero: Prisma.GeneroCreateNestedOneWithoutAlbumesInput
 }
 
 export type AlbumUncheckedCreateInput = {
@@ -268,6 +288,7 @@ export type AlbumUncheckedCreateInput = {
   titulo: string
   artista: string
   anio: number
+  generoId: number
   canciones?: Prisma.CancionUncheckedCreateNestedManyWithoutAlbumInput
 }
 
@@ -276,6 +297,7 @@ export type AlbumUpdateInput = {
   artista?: Prisma.StringFieldUpdateOperationsInput | string
   anio?: Prisma.IntFieldUpdateOperationsInput | number
   canciones?: Prisma.CancionUpdateManyWithoutAlbumNestedInput
+  genero?: Prisma.GeneroUpdateOneRequiredWithoutAlbumesNestedInput
 }
 
 export type AlbumUncheckedUpdateInput = {
@@ -283,6 +305,7 @@ export type AlbumUncheckedUpdateInput = {
   titulo?: Prisma.StringFieldUpdateOperationsInput | string
   artista?: Prisma.StringFieldUpdateOperationsInput | string
   anio?: Prisma.IntFieldUpdateOperationsInput | number
+  generoId?: Prisma.IntFieldUpdateOperationsInput | number
   canciones?: Prisma.CancionUncheckedUpdateManyWithoutAlbumNestedInput
 }
 
@@ -291,6 +314,7 @@ export type AlbumCreateManyInput = {
   titulo: string
   artista: string
   anio: number
+  generoId: number
 }
 
 export type AlbumUpdateManyMutationInput = {
@@ -304,6 +328,7 @@ export type AlbumUncheckedUpdateManyInput = {
   titulo?: Prisma.StringFieldUpdateOperationsInput | string
   artista?: Prisma.StringFieldUpdateOperationsInput | string
   anio?: Prisma.IntFieldUpdateOperationsInput | number
+  generoId?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type AlbumCountOrderByAggregateInput = {
@@ -311,11 +336,13 @@ export type AlbumCountOrderByAggregateInput = {
   titulo?: Prisma.SortOrder
   artista?: Prisma.SortOrder
   anio?: Prisma.SortOrder
+  generoId?: Prisma.SortOrder
 }
 
 export type AlbumAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
   anio?: Prisma.SortOrder
+  generoId?: Prisma.SortOrder
 }
 
 export type AlbumMaxOrderByAggregateInput = {
@@ -323,6 +350,7 @@ export type AlbumMaxOrderByAggregateInput = {
   titulo?: Prisma.SortOrder
   artista?: Prisma.SortOrder
   anio?: Prisma.SortOrder
+  generoId?: Prisma.SortOrder
 }
 
 export type AlbumMinOrderByAggregateInput = {
@@ -330,16 +358,28 @@ export type AlbumMinOrderByAggregateInput = {
   titulo?: Prisma.SortOrder
   artista?: Prisma.SortOrder
   anio?: Prisma.SortOrder
+  generoId?: Prisma.SortOrder
 }
 
 export type AlbumSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
   anio?: Prisma.SortOrder
+  generoId?: Prisma.SortOrder
 }
 
 export type AlbumScalarRelationFilter = {
   is?: Prisma.AlbumWhereInput
   isNot?: Prisma.AlbumWhereInput
+}
+
+export type AlbumListRelationFilter = {
+  every?: Prisma.AlbumWhereInput
+  some?: Prisma.AlbumWhereInput
+  none?: Prisma.AlbumWhereInput
+}
+
+export type AlbumOrderByRelationAggregateInput = {
+  _count?: Prisma.SortOrder
 }
 
 export type StringFieldUpdateOperationsInput = {
@@ -368,10 +408,53 @@ export type AlbumUpdateOneRequiredWithoutCancionesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.AlbumUpdateToOneWithWhereWithoutCancionesInput, Prisma.AlbumUpdateWithoutCancionesInput>, Prisma.AlbumUncheckedUpdateWithoutCancionesInput>
 }
 
+export type AlbumCreateNestedManyWithoutGeneroInput = {
+  create?: Prisma.XOR<Prisma.AlbumCreateWithoutGeneroInput, Prisma.AlbumUncheckedCreateWithoutGeneroInput> | Prisma.AlbumCreateWithoutGeneroInput[] | Prisma.AlbumUncheckedCreateWithoutGeneroInput[]
+  connectOrCreate?: Prisma.AlbumCreateOrConnectWithoutGeneroInput | Prisma.AlbumCreateOrConnectWithoutGeneroInput[]
+  createMany?: Prisma.AlbumCreateManyGeneroInputEnvelope
+  connect?: Prisma.AlbumWhereUniqueInput | Prisma.AlbumWhereUniqueInput[]
+}
+
+export type AlbumUncheckedCreateNestedManyWithoutGeneroInput = {
+  create?: Prisma.XOR<Prisma.AlbumCreateWithoutGeneroInput, Prisma.AlbumUncheckedCreateWithoutGeneroInput> | Prisma.AlbumCreateWithoutGeneroInput[] | Prisma.AlbumUncheckedCreateWithoutGeneroInput[]
+  connectOrCreate?: Prisma.AlbumCreateOrConnectWithoutGeneroInput | Prisma.AlbumCreateOrConnectWithoutGeneroInput[]
+  createMany?: Prisma.AlbumCreateManyGeneroInputEnvelope
+  connect?: Prisma.AlbumWhereUniqueInput | Prisma.AlbumWhereUniqueInput[]
+}
+
+export type AlbumUpdateManyWithoutGeneroNestedInput = {
+  create?: Prisma.XOR<Prisma.AlbumCreateWithoutGeneroInput, Prisma.AlbumUncheckedCreateWithoutGeneroInput> | Prisma.AlbumCreateWithoutGeneroInput[] | Prisma.AlbumUncheckedCreateWithoutGeneroInput[]
+  connectOrCreate?: Prisma.AlbumCreateOrConnectWithoutGeneroInput | Prisma.AlbumCreateOrConnectWithoutGeneroInput[]
+  upsert?: Prisma.AlbumUpsertWithWhereUniqueWithoutGeneroInput | Prisma.AlbumUpsertWithWhereUniqueWithoutGeneroInput[]
+  createMany?: Prisma.AlbumCreateManyGeneroInputEnvelope
+  set?: Prisma.AlbumWhereUniqueInput | Prisma.AlbumWhereUniqueInput[]
+  disconnect?: Prisma.AlbumWhereUniqueInput | Prisma.AlbumWhereUniqueInput[]
+  delete?: Prisma.AlbumWhereUniqueInput | Prisma.AlbumWhereUniqueInput[]
+  connect?: Prisma.AlbumWhereUniqueInput | Prisma.AlbumWhereUniqueInput[]
+  update?: Prisma.AlbumUpdateWithWhereUniqueWithoutGeneroInput | Prisma.AlbumUpdateWithWhereUniqueWithoutGeneroInput[]
+  updateMany?: Prisma.AlbumUpdateManyWithWhereWithoutGeneroInput | Prisma.AlbumUpdateManyWithWhereWithoutGeneroInput[]
+  deleteMany?: Prisma.AlbumScalarWhereInput | Prisma.AlbumScalarWhereInput[]
+}
+
+export type AlbumUncheckedUpdateManyWithoutGeneroNestedInput = {
+  create?: Prisma.XOR<Prisma.AlbumCreateWithoutGeneroInput, Prisma.AlbumUncheckedCreateWithoutGeneroInput> | Prisma.AlbumCreateWithoutGeneroInput[] | Prisma.AlbumUncheckedCreateWithoutGeneroInput[]
+  connectOrCreate?: Prisma.AlbumCreateOrConnectWithoutGeneroInput | Prisma.AlbumCreateOrConnectWithoutGeneroInput[]
+  upsert?: Prisma.AlbumUpsertWithWhereUniqueWithoutGeneroInput | Prisma.AlbumUpsertWithWhereUniqueWithoutGeneroInput[]
+  createMany?: Prisma.AlbumCreateManyGeneroInputEnvelope
+  set?: Prisma.AlbumWhereUniqueInput | Prisma.AlbumWhereUniqueInput[]
+  disconnect?: Prisma.AlbumWhereUniqueInput | Prisma.AlbumWhereUniqueInput[]
+  delete?: Prisma.AlbumWhereUniqueInput | Prisma.AlbumWhereUniqueInput[]
+  connect?: Prisma.AlbumWhereUniqueInput | Prisma.AlbumWhereUniqueInput[]
+  update?: Prisma.AlbumUpdateWithWhereUniqueWithoutGeneroInput | Prisma.AlbumUpdateWithWhereUniqueWithoutGeneroInput[]
+  updateMany?: Prisma.AlbumUpdateManyWithWhereWithoutGeneroInput | Prisma.AlbumUpdateManyWithWhereWithoutGeneroInput[]
+  deleteMany?: Prisma.AlbumScalarWhereInput | Prisma.AlbumScalarWhereInput[]
+}
+
 export type AlbumCreateWithoutCancionesInput = {
   titulo: string
   artista: string
   anio: number
+  genero: Prisma.GeneroCreateNestedOneWithoutAlbumesInput
 }
 
 export type AlbumUncheckedCreateWithoutCancionesInput = {
@@ -379,6 +462,7 @@ export type AlbumUncheckedCreateWithoutCancionesInput = {
   titulo: string
   artista: string
   anio: number
+  generoId: number
 }
 
 export type AlbumCreateOrConnectWithoutCancionesInput = {
@@ -401,9 +485,92 @@ export type AlbumUpdateWithoutCancionesInput = {
   titulo?: Prisma.StringFieldUpdateOperationsInput | string
   artista?: Prisma.StringFieldUpdateOperationsInput | string
   anio?: Prisma.IntFieldUpdateOperationsInput | number
+  genero?: Prisma.GeneroUpdateOneRequiredWithoutAlbumesNestedInput
 }
 
 export type AlbumUncheckedUpdateWithoutCancionesInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  titulo?: Prisma.StringFieldUpdateOperationsInput | string
+  artista?: Prisma.StringFieldUpdateOperationsInput | string
+  anio?: Prisma.IntFieldUpdateOperationsInput | number
+  generoId?: Prisma.IntFieldUpdateOperationsInput | number
+}
+
+export type AlbumCreateWithoutGeneroInput = {
+  titulo: string
+  artista: string
+  anio: number
+  canciones?: Prisma.CancionCreateNestedManyWithoutAlbumInput
+}
+
+export type AlbumUncheckedCreateWithoutGeneroInput = {
+  id?: number
+  titulo: string
+  artista: string
+  anio: number
+  canciones?: Prisma.CancionUncheckedCreateNestedManyWithoutAlbumInput
+}
+
+export type AlbumCreateOrConnectWithoutGeneroInput = {
+  where: Prisma.AlbumWhereUniqueInput
+  create: Prisma.XOR<Prisma.AlbumCreateWithoutGeneroInput, Prisma.AlbumUncheckedCreateWithoutGeneroInput>
+}
+
+export type AlbumCreateManyGeneroInputEnvelope = {
+  data: Prisma.AlbumCreateManyGeneroInput | Prisma.AlbumCreateManyGeneroInput[]
+  skipDuplicates?: boolean
+}
+
+export type AlbumUpsertWithWhereUniqueWithoutGeneroInput = {
+  where: Prisma.AlbumWhereUniqueInput
+  update: Prisma.XOR<Prisma.AlbumUpdateWithoutGeneroInput, Prisma.AlbumUncheckedUpdateWithoutGeneroInput>
+  create: Prisma.XOR<Prisma.AlbumCreateWithoutGeneroInput, Prisma.AlbumUncheckedCreateWithoutGeneroInput>
+}
+
+export type AlbumUpdateWithWhereUniqueWithoutGeneroInput = {
+  where: Prisma.AlbumWhereUniqueInput
+  data: Prisma.XOR<Prisma.AlbumUpdateWithoutGeneroInput, Prisma.AlbumUncheckedUpdateWithoutGeneroInput>
+}
+
+export type AlbumUpdateManyWithWhereWithoutGeneroInput = {
+  where: Prisma.AlbumScalarWhereInput
+  data: Prisma.XOR<Prisma.AlbumUpdateManyMutationInput, Prisma.AlbumUncheckedUpdateManyWithoutGeneroInput>
+}
+
+export type AlbumScalarWhereInput = {
+  AND?: Prisma.AlbumScalarWhereInput | Prisma.AlbumScalarWhereInput[]
+  OR?: Prisma.AlbumScalarWhereInput[]
+  NOT?: Prisma.AlbumScalarWhereInput | Prisma.AlbumScalarWhereInput[]
+  id?: Prisma.IntFilter<"Album"> | number
+  titulo?: Prisma.StringFilter<"Album"> | string
+  artista?: Prisma.StringFilter<"Album"> | string
+  anio?: Prisma.IntFilter<"Album"> | number
+  generoId?: Prisma.IntFilter<"Album"> | number
+}
+
+export type AlbumCreateManyGeneroInput = {
+  id?: number
+  titulo: string
+  artista: string
+  anio: number
+}
+
+export type AlbumUpdateWithoutGeneroInput = {
+  titulo?: Prisma.StringFieldUpdateOperationsInput | string
+  artista?: Prisma.StringFieldUpdateOperationsInput | string
+  anio?: Prisma.IntFieldUpdateOperationsInput | number
+  canciones?: Prisma.CancionUpdateManyWithoutAlbumNestedInput
+}
+
+export type AlbumUncheckedUpdateWithoutGeneroInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  titulo?: Prisma.StringFieldUpdateOperationsInput | string
+  artista?: Prisma.StringFieldUpdateOperationsInput | string
+  anio?: Prisma.IntFieldUpdateOperationsInput | number
+  canciones?: Prisma.CancionUncheckedUpdateManyWithoutAlbumNestedInput
+}
+
+export type AlbumUncheckedUpdateManyWithoutGeneroInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   titulo?: Prisma.StringFieldUpdateOperationsInput | string
   artista?: Prisma.StringFieldUpdateOperationsInput | string
@@ -446,7 +613,9 @@ export type AlbumSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   titulo?: boolean
   artista?: boolean
   anio?: boolean
+  generoId?: boolean
   canciones?: boolean | Prisma.Album$cancionesArgs<ExtArgs>
+  genero?: boolean | Prisma.GeneroDefaultArgs<ExtArgs>
   _count?: boolean | Prisma.AlbumCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["album"]>
 
@@ -455,6 +624,8 @@ export type AlbumSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   titulo?: boolean
   artista?: boolean
   anio?: boolean
+  generoId?: boolean
+  genero?: boolean | Prisma.GeneroDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["album"]>
 
 export type AlbumSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -462,6 +633,8 @@ export type AlbumSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   titulo?: boolean
   artista?: boolean
   anio?: boolean
+  generoId?: boolean
+  genero?: boolean | Prisma.GeneroDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["album"]>
 
 export type AlbumSelectScalar = {
@@ -469,26 +642,34 @@ export type AlbumSelectScalar = {
   titulo?: boolean
   artista?: boolean
   anio?: boolean
+  generoId?: boolean
 }
 
-export type AlbumOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "titulo" | "artista" | "anio", ExtArgs["result"]["album"]>
+export type AlbumOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "titulo" | "artista" | "anio" | "generoId", ExtArgs["result"]["album"]>
 export type AlbumInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   canciones?: boolean | Prisma.Album$cancionesArgs<ExtArgs>
+  genero?: boolean | Prisma.GeneroDefaultArgs<ExtArgs>
   _count?: boolean | Prisma.AlbumCountOutputTypeDefaultArgs<ExtArgs>
 }
-export type AlbumIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
-export type AlbumIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
+export type AlbumIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  genero?: boolean | Prisma.GeneroDefaultArgs<ExtArgs>
+}
+export type AlbumIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  genero?: boolean | Prisma.GeneroDefaultArgs<ExtArgs>
+}
 
 export type $AlbumPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Album"
   objects: {
     canciones: Prisma.$CancionPayload<ExtArgs>[]
+    genero: Prisma.$GeneroPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
     titulo: string
     artista: string
     anio: number
+    generoId: number
   }, ExtArgs["result"]["album"]>
   composites: {}
 }
@@ -884,6 +1065,7 @@ readonly fields: AlbumFieldRefs;
 export interface Prisma__AlbumClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   canciones<T extends Prisma.Album$cancionesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Album$cancionesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CancionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  genero<T extends Prisma.GeneroDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.GeneroDefaultArgs<ExtArgs>>): Prisma.Prisma__GeneroClient<runtime.Types.Result.GetResult<Prisma.$GeneroPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -917,6 +1099,7 @@ export interface AlbumFieldRefs {
   readonly titulo: Prisma.FieldRef<"Album", 'String'>
   readonly artista: Prisma.FieldRef<"Album", 'String'>
   readonly anio: Prisma.FieldRef<"Album", 'Int'>
+  readonly generoId: Prisma.FieldRef<"Album", 'Int'>
 }
     
 
@@ -1171,6 +1354,10 @@ export type AlbumCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extension
    */
   data: Prisma.AlbumCreateManyInput | Prisma.AlbumCreateManyInput[]
   skipDuplicates?: boolean
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AlbumIncludeCreateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -1241,6 +1428,10 @@ export type AlbumUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.Extension
    * Limit how many Albums to update.
    */
   limit?: number
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AlbumIncludeUpdateManyAndReturn<ExtArgs> | null
 }
 
 /**

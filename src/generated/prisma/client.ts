@@ -51,3 +51,8 @@ export type Album = Prisma.AlbumModel
  * 
  */
 export type Cancion = Prisma.CancionModel
+/**
+ * Model Genero
+ * 
+ */
+export type Genero = Prisma.GeneroModel
